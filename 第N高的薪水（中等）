@@ -1,10 +1,8 @@
 //https://leetcode-cn.com/problems/nth-highest-salary/
 CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
 BEGIN
-  RETURN (
-     SET N = N - 1;
+    SET N = N - 1;
 	RETURN (
 	 SELECT DISTINCT salary FROM employee ORDER BY salary DESC LIMIT N, 1
 	);
-  );
 END
