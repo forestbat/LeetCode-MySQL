@@ -1,0 +1,3 @@
+//https://leetcode-cn.com/problems/employees-earning-more-than-their-managers/
+select p1.Name as Employee from Employee p1,Employee p2 where
+p1.ManagerId is Not NULL and p1.ManagerId=p2.Id and p1.Salary>p2.Salary;
