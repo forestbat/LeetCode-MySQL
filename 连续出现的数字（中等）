@@ -1,0 +1,6 @@
+//https://leetcode-cn.com/problems/consecutive-numbers/
+select distinct l1.num ConsecutiveNums from logs l1 
+inner join logs l2 on l1.id=l2.id-1 
+inner join logs l3 on l2.id=l3.id-1 
+where l1.num=l2.num and l2.num=l3.num;
+//内连接表两次，如果有4行以上出现将会重复获取数据因此要distinct去重
