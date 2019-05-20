@@ -1,0 +1,9 @@
+//https://leetcode-cn.com/problems/rank-scores/
+select a.Score, sum(case when b.Score>=a.Score then 1 end) as Rank 
+from Scores a, (select distinct Score from Scores )b 
+group by a.id order by a.Score desc; 
+b是去重之后的表（你可以把他看成从高到低排序好了，然后附上从1开始递增的id，
+如果a的score和b的score相同，那么b的id就是a的排名），这样sum(case when b.Score>=a.Score then 1 end) 
+这里就是b中有x个比a的score高或者相等的值。这样只有一个相等的就是第一名，
+rank就是1.一个高一个相等就是第二名，rank就是2.（也可以理解成等于几，
+就是前面排序好的id。这样会更容易理解一点。sum相当于是给b表附了一个自增的从1开始的值）
