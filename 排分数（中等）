@@ -1,0 +1,6 @@
+//https://leetcode.com/problems/rank-scores/
+select Scores.Score,ScoresWithRank.Rank from Scores,
+(select ScoreUnique.Score,(@num:=@num+1) as Rank from 
+(select distinct Score from Scores order by Score desc) as ScoreUnique,
+(select @num:=0) as num order by Score desc) as ScoresWithRank
+where Scores.Score=ScoresWithRank.Score order by Score desc;
